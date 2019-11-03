@@ -1,7 +1,20 @@
 #include <Arduino.h>
 #include "font.cpp"
 
-byte pixel_buffer[320*8/2*3];
+#define SCREEN_WIDTH 320
+#define FONT_HEIGHT 8
+#define PIXEL_BUFFER_BYTES SCREEN_WIDTH * FONT_HEIGHT / 2*3
+
+byte pixel_buffer[PIXEL_BUFFER_BYTES];
+
+void pixel_buffer_clear() {
+
+  int i;
+
+  for (i=0; i<PIXEL_BUFFER_BYTES; i++) {
+    pixel_buffer[i] = 0;
+  }
+}
 
 inline void pixel_buffer_draw_pixel(uint16_t x, uint16_t y, uint16_t color) {
 
@@ -9,7 +22,7 @@ inline void pixel_buffer_draw_pixel(uint16_t x, uint16_t y, uint16_t color) {
 
   // color is a 12-bit color
 
-  uint16_t pixel_offset = y*320 + x;
+  uint16_t pixel_offset = y*SCREEN_WIDTH + x;
   uint16_t byte_offset = (int)((float)pixel_offset * 1.5);
 
   if (pixel_offset % 2 == 0) {
@@ -25,9 +38,9 @@ inline void pixel_buffer_draw_pixel(uint16_t x, uint16_t y, uint16_t color) {
   }
 }
 
-void pixel_buffer_draw_char(uint16_t x, uint16_t y, byte c, uint16_t color, uint16_t bg) {
+void pixel_buffer_draw_char(uint16_t x, uint16_t y, unsigned char c, uint16_t color, uint16_t bg) {
 
-  for (int8_t i=0; i<5; i++ ) { // Char bitmap = 5 columns
+  for (int8_t i=0; i<5; i++) { // Char bitmap = 5 columns
     uint8_t line = font[c * 5 + i];
 
     for (int8_t j=0; j<8; j++, line >>= 1) {
@@ -37,6 +50,14 @@ void pixel_buffer_draw_char(uint16_t x, uint16_t y, byte c, uint16_t color, uint
         else if (bg != color) {
           pixel_buffer_draw_pixel(x+i, y+j, bg);
         }
+    }
+  }
+}
+
+void pixel_buffer_draw_cursor(uint16_t x, uint16_t y, uint16_t color) {
+  for (int8_t i=0; i<5; i++) {
+    for (int8_t j=0; j<8; j++) {
+      pixel_buffer_draw_pixel(x+i, y+j, color);
     }
   }
 }

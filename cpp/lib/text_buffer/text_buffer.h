@@ -1,19 +1,3 @@
-/*
-array of lines where each line is as wide as the tb and the number of lines is the number of lines that will fit on the tb - 1.
-
-This will deal with the worst-case "scrollback" where we're editing the last line and it doesn't wrap.
-
-Then for the active (last) line we have one string that's just as long as how many chars will fit on the tb. Any line longer than the entire tb will either be a runtime error or get truncated. Unsure.
-
-Figuring out how many lines are on the tb:
-Count the number of hard-wrapped lines in the active line.
-If there are fewer than the tb, add the number of lines in the scrollback up to the number of lines in the tb. draw backwards, basically.
-
-When a new line is added, just wrap the current one, replacing scrollback lines and pushing those back.
-
-Adding to the active line might cause a scroll (if we're on the last line of the tb) and subtracting might cause a scroll again if it crosses back over a line threshold.
-*/
-
 #define ROWS 30
 #define COLS 53
 #define TEXTBUFFER_LENGTH ROWS*COLS

@@ -412,6 +412,58 @@ void test_tb_move_cursor_left() {
     TEST_ASSERT_EQUAL(0, tb.offset);
 }
 
+void test_errors() {
+
+    int i;
+    char line[TEXTBUFFER_LENGTH];
+
+    TextBuffer tb;
+    tb_init(&tb);
+
+    tb_write_char(&tb, ESCAPE);
+    tb_write(&tb, "[12345678901");
+    TEST_ASSERT_EQUAL_STRING("escape string too long", tb_error);
+
+    tb_clear(&tb);
+
+    tb_write_char(&tb, ESCAPE);
+    tb_write(&tb, "aa");
+    TEST_ASSERT_EQUAL_STRING("unknown escape end", tb_error);
+
+    tb_clear(&tb);
+
+    tb_write_char(&tb, ESCAPE);
+    tb_write(&tb, "=");
+    TEST_ASSERT_EQUAL_STRING("unknown escape sequence", tb_error);
+
+    tb_clear(&tb);
+
+    for (i=0; i<=TEXTBUFFER_LENGTH; i++) {
+        tb_write_char(&tb, 'x');
+    }
+    TEST_ASSERT_EQUAL_STRING("text buffer overflow", tb_error);
+
+    tb_clear(&tb);
+
+    tb_write_char(&tb, 0);
+    TEST_ASSERT_EQUAL_STRING("unknown character", tb_error);
+
+    tb_clear(&tb);
+
+    tb_get_line_from_current(&tb, line, 1);
+    TEST_ASSERT_EQUAL_STRING("row overflow", tb_error);
+
+    tb_clear(&tb);
+
+    tb_get_line_from_past_end(&tb, line, 0);
+    TEST_ASSERT_EQUAL_STRING("row overflow", tb_error);
+
+    tb_clear(&tb);
+
+    tb_get_screen_line(&tb, line, 1);
+    TEST_ASSERT_EQUAL_STRING("row overflow", tb_error);
+}
+
 int main() {
     UNITY_BEGIN();
     RUN_TEST(test_tb_init);
@@ -426,6 +478,7 @@ int main() {
     RUN_TEST(test_handle_lf);
     RUN_TEST(test_clear_line_from_cursor);
     RUN_TEST(test_tb_move_cursor_left);
+    RUN_TEST(test_errors);
     UNITY_END();
     return 0;
 }

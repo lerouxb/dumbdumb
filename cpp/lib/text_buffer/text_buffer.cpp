@@ -4,6 +4,15 @@
 #include <string.h>
 #include "text_buffer.h"
 
+const char * tb_error;
+
+const char UNKNOWN_ESCAPE_END[] = "unknown escape end";
+const char ESCAPE_STRING_TOO_LONG[] = "escape string too long";
+const char UNKNOWN_ESCAPE_SEQUENCE[] = "unknown escape sequence";
+const char TEXT_BUFFER_OVERFLOW[] = "text buffer overflow";
+const char UNKNOWN_CHARACTER[] = "unknown character";
+const char ROW_OVERFLOW[] = "row overflow";
+
 bool is_letter(char c) {
     if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
         return true;
@@ -49,7 +58,7 @@ bool is_escape_end(const char * escape_string) {
     } else if (is_number(first)) {
         return is_letter(last);
     } else {
-        // TODO: error
+        tb_error = UNKNOWN_ESCAPE_END;
         return false;
     }
 }
@@ -58,7 +67,7 @@ bool insert_at(char * current, int offset, char c) {
     int length = strlen(current);
 
     if (length == TEXTBUFFER_LENGTH) {
-        // TODO: error
+        tb_error = TEXT_BUFFER_OVERFLOW;
         return false;
     }
 
@@ -91,35 +100,40 @@ void tb_init(TextBuffer * tb) {
     }
 }
 
-void tb_write(TextBuffer * tb, const char * str) {
+bool tb_write(TextBuffer * tb, const char * str) {
 
     int i;
     int str_length = strlen(str);
 
     for (i=0; i<str_length; i++) {
-        tb_write_char(tb, str[i]);
+        if (!tb_write_char(tb, str[i])) {
+            return false;
+        }
     }
+
+    return true;
 }
 
-void tb_write_char(TextBuffer * tb, char c) {
+bool tb_write_char(TextBuffer * tb, char c) {
     int escape_string_length;
 
     if (tb->is_escape) {
         escape_string_length = strlen(tb->escape_string);
 
         if (escape_string_length == MAX_ESCAPE_STRING) {
-            // TODO: error
-            return;
+            tb_error = ESCAPE_STRING_TOO_LONG;
+            return false;
         }
 
         tb->escape_string[escape_string_length] = c;
         tb->escape_string[escape_string_length + 1] = 0;
 
         if (is_escape_end(tb->escape_string)) {
-            tb_handle_escape_string(tb);
+            bool result = tb_handle_escape_string(tb);
 
             tb->is_escape = false;
             tb->escape_string[0] = 0;
+            return result;
         }
 
     } else if (c == ESCAPE) {
@@ -136,14 +150,17 @@ void tb_write_char(TextBuffer * tb, char c) {
 
     } else if (c < 32 || c > 126) {
         // unknown character
-        // TODO: error
+        tb_error = UNKNOWN_CHARACTER;
+        return false;
 
     } else {
-        tb_handle_visible_char(tb, c);
+        return tb_handle_visible_char(tb, c);
     }
+
+    return true;
 }
 
-void tb_handle_escape_string(TextBuffer * tb) {
+bool tb_handle_escape_string(TextBuffer * tb) {
 
     char first = tb->escape_string[0];
     int length = strlen(tb->escape_string);
@@ -152,17 +169,18 @@ void tb_handle_escape_string(TextBuffer * tb) {
     if (first == '[') {
         if (length == 2 && last == 'K') {
             tb_clear_line_from_cursor(tb);
-            return;
+            return true;
         }
         if (last == 'D') {
             int num_chars = atoi(&tb->escape_string[1]);
             tb_move_cursor_left(tb, num_chars);
-            return;
+            return true;
         }
     }
 
     // nothing else is handled yet
-    // TODO: error
+    tb_error = UNKNOWN_ESCAPE_SEQUENCE;
+    return false;
 }
 
 void tb_handle_backspace(TextBuffer * tb) {
@@ -193,16 +211,18 @@ void tb_handle_lf(TextBuffer * tb) {
     mark_apply(&mark, tb);
 }
 
-void tb_handle_visible_char(TextBuffer * tb, char c) {
+bool tb_handle_visible_char(TextBuffer * tb, char c) {
     Mark mark;
     mark_init(&mark, tb);
 
     if (!insert_at(tb->current, tb->offset, c)) {
-        // TODO: error
+        return false;
     }
 
     tb->offset += 1;
     mark_apply(&mark, tb);
+
+    return true;
 }
 
 void tb_clear_line_from_cursor(TextBuffer * tb) {
@@ -287,15 +307,17 @@ void tb_clear(TextBuffer * tb) {
     for (i=0; i<ROWS; i++) {
         tb->dirty[i] = true;
     }
+
+    tb_error = NULL;
 }
 
-void tb_get_line_from_current(TextBuffer * tb, char * destination, int y) {
+bool tb_get_line_from_current(TextBuffer * tb, char * destination, int y) {
     // copy up to COLS from y*COLS
     int length = strlen(tb->current);
 
     if (y*COLS > length) {
-        // TODO: error
-        return;
+        tb_error = ROW_OVERFLOW;
+        return false;
     }
 
     int amount;
@@ -308,28 +330,32 @@ void tb_get_line_from_current(TextBuffer * tb, char * destination, int y) {
 
     memcpy(destination, &tb->current[y*COLS], amount);
     destination[amount] = 0;
+
+    return true;
 }
 
-void tb_get_line_from_past_end(TextBuffer * tb, char * destination, int delta) {
+bool tb_get_line_from_past_end(TextBuffer * tb, char * destination, int delta) {
     // copy the delta'th last line. so zero is the last one, 1 is the second last one and so on.
     int index = tb->length - delta - 1;
     int length = strlen(tb->past[index]);
 
     if (index < 0 || index >= tb->length) {
-        // TODO: error
-        return;
+        tb_error = ROW_OVERFLOW;
+        return false;
     }
 
     memcpy(destination, tb->past[index], length + 1);
+
+    return true;
 }
 
-void tb_get_screen_line(TextBuffer * tb, char * destination, int y) {
+bool tb_get_screen_line(TextBuffer * tb, char * destination, int y) {
     // do nothing if it isn't on screen
     int num_lines = tb_num_lines(tb);
 
     if (y >= num_lines) {
-        // TODO: error
-        return;
+        tb_error = ROW_OVERFLOW;
+        return false;
     }
 
     int current_num_lines = tb_num_lines_current(tb);
@@ -344,6 +370,8 @@ void tb_get_screen_line(TextBuffer * tb, char * destination, int y) {
         // the line is in the past lines
         tb_get_line_from_past_end(tb, destination, current_start - y - 1);
     }
+
+    return true;
 }
 
 void tb_reset_dirty(TextBuffer * tb) {

@@ -18,13 +18,22 @@
 #define C12 PA7
 #define ESC PF0
 
+#define KEY_BACKSPACE 12
+#define KEY_ENTER 25
+#define KEY_LEFT_SHIFT 39
+#define KEY_RIGHT_SHIFT 51
+#define KEY_CONTROL 52
+#define KEY_ALT 53
+#define KEY_LEFT_ARROW 55
+#define KEY_RIGHT_ARROW 56
+#define KEY_ESCAPE 65
+
 extern unsigned long keys_down[5 * 13 + 1];
 extern byte keys_repeat[5 * 13 + 1];
 extern byte keys_pressed[5 * 13 + 1];
 
 extern const unsigned char key_map_normal[66];
 extern const unsigned char key_map_shifted[66];
-extern const byte key_modifiers[4];
 
 void keyboard_init();
 void keyboard_poll();

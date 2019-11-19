@@ -1,4 +1,6 @@
-extern byte pixel_buffer[320*8/2*3];
+#include <st7789vi.h>
+
+extern byte pixel_buffer[SCREEN_WIDTH*FONT_HEIGHT/2*3];
 
 void pixel_buffer_clear();
 

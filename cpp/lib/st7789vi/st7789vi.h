@@ -22,6 +22,10 @@
 #define DB14 PB14
 #define DB15 PB15
 
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+#define FONT_HEIGHT 8
+
 // TODO: there are memory locations where you can just specify the bits you want to set, so no reason to read the current values and do bitwise operations
 #define CLR_DC GPIOC->ODR &= ~(1 << 8);
 #define SET_DC GPIOC->ODR |=  (1 << 8);

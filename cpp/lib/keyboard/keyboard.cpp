@@ -10,152 +10,145 @@ byte keys_repeat[5 * 13 + 1];
 byte keys_pressed[5 * 13 + 1];
 
 const unsigned char key_map_normal[] = {
-  '1', // 0  1!
-  '2', // 1  2@
-  '3', // 2  3#
-  '4', // 3  4$
-  '5', // 4  5%
-  '6', // 5  6^
-  '7', // 6  7&
-  '8', // 7  8*
-  '9', // 8  9(
-  '0', // 9  0)
-  '-', // 10 -=
-  '=', // 11 =+
-  0, // 12 backspace TODO
-  'q', // 13 q
-  'w', // 14 w
-  'e', // 15 e
-  'r', // 16 r
-  't', // 17 t
-  'y', // 18 y
-  'u', // 19 u
-  'i', // 20 i
-  'o', // 21 o
-  'p', // 22 p
-  '[', // 23 [{
-  ']', // 24 ]}
-  0, // 25 enter TODO
-  'a', // 26 a
-  's', // 27 s
-  'd', // 28 d
-  'f', // 29 f
-  'g', // 30 g
-  'h', // 31 h
-  'j', // 32 j
-  'k', // 33 k
-  'l', // 34 l
-  ';', // 35 ;:
-  '\'', // 36 '"
-  '\\', // 37 \|
-  0, // 38 NOT USED
-  0, // 39 left shift TODO
-  'z', // 40 z
-  'x', // 41 x
-  'c', // 42 c
-  'v', // 43 v
-  'b', // 44 b
-  'n', // 45 n
-  'm', // 46 m
-  ',', // 47 ,<
-  '.', // 48 .>
-  '/', // 49 /?
-  '`', // 50 `~
-  0, // 51 right shift TODO
-  0, // 52 control TODO
-  0, // 53 alt TODO
-  ' ', // 54 space
-  0, // 55 left arrow TODO
-  0, // 56 right arrow TODO
-  0, // 57 NOT USED
-  0, // 58 NOT USED
-  0, // 59 NOT USED
-  0, // 60 NOT USED
-  0, // 61 NOT USED
-  0, // 62 NOT USED
-  0, // 63 NOT USED
-  0, // 64 NOT USED
-  0  // 65 escape TODO
+    '1', // 0    1!
+    '2', // 1    2@
+    '3', // 2    3#
+    '4', // 3    4$
+    '5', // 4    5%
+    '6', // 5    6^
+    '7', // 6    7&
+    '8', // 7    8*
+    '9', // 8    9(
+    '0', // 9    0)
+    '-', // 10 -=
+    '=', // 11 =+
+    0, // 12 backspace TODO
+    'q', // 13 q
+    'w', // 14 w
+    'e', // 15 e
+    'r', // 16 r
+    't', // 17 t
+    'y', // 18 y
+    'u', // 19 u
+    'i', // 20 i
+    'o', // 21 o
+    'p', // 22 p
+    '[', // 23 [{
+    ']', // 24 ]}
+    0, // 25 enter TODO
+    'a', // 26 a
+    's', // 27 s
+    'd', // 28 d
+    'f', // 29 f
+    'g', // 30 g
+    'h', // 31 h
+    'j', // 32 j
+    'k', // 33 k
+    'l', // 34 l
+    ';', // 35 ;:
+    '\'', // 36 '"
+    '\\', // 37 \|
+    0, // 38 NOT USED
+    0, // 39 left shift TODO
+    'z', // 40 z
+    'x', // 41 x
+    'c', // 42 c
+    'v', // 43 v
+    'b', // 44 b
+    'n', // 45 n
+    'm', // 46 m
+    ',', // 47 ,<
+    '.', // 48 .>
+    '/', // 49 /?
+    '`', // 50 `~
+    0, // 51 right shift TODO
+    0, // 52 control TODO
+    0, // 53 alt TODO
+    ' ', // 54 space
+    0, // 55 left arrow TODO
+    0, // 56 right arrow TODO
+    0, // 57 NOT USED
+    0, // 58 NOT USED
+    0, // 59 NOT USED
+    0, // 60 NOT USED
+    0, // 61 NOT USED
+    0, // 62 NOT USED
+    0, // 63 NOT USED
+    0, // 64 NOT USED
+    0    // 65 escape TODO
 };
 
 const unsigned char key_map_shifted[] = {
-  '!', // 0  1!
-  '@', // 1  2@
-  '#', // 2  3#
-  '$', // 3  4$
-  '%', // 4  5%
-  '^', // 5  6^
-  '&', // 6  7&
-  '*', // 7  8*
-  '(', // 8  9(
-  ')', // 9  0)
-  '_', // 10 -=
-  '+', // 11 =+
-  0, // 12 backspace
-  'Q', // 13 q
-  'W', // 14 w
-  'E', // 15 e
-  'R', // 16 r
-  'T', // 17 t
-  'Y', // 18 y
-  'U', // 19 u
-  'I', // 20 i
-  'O', // 21 o
-  'P', // 22 p
-  '{', // 23 [{
-  '}', // 24 ]}
-  0, // 25 enter
-  'A', // 26 a
-  'S', // 27 s
-  'D', // 28 d
-  'F', // 29 f
-  'G', // 30 g
-  'H', // 31 h
-  'J', // 32 j
-  'K', // 33 k
-  'L', // 34 l
-  ':', // 35 ;:
-  '"', // 36 '"
-  '|', // 37 \|
-  0, // 38 NOT USED
-  0, // 39 left shift
-  'Z', // 40 z
-  'X', // 41 x
-  'C', // 42 c
-  'V', // 43 v
-  'B', // 44 b
-  'N', // 45 n
-  'M', // 46 m
-  '<', // 47 ,<
-  '>', // 48 .>
-  '?', // 49 /?
-  '~', // 50 `~
-  0, // 51 right shift
-  0, // 52 control
-  0, // 53 alt
-  0, // 54 space
-  0, // 55 left arrow
-  0, // 56 right arrow
-  0, // 57 NOT USED
-  0, // 58 NOT USED
-  0, // 59 NOT USED
-  0, // 60 NOT USED
-  0, // 61 NOT USED
-  0, // 62 NOT USED
-  0, // 63 NOT USED
-  0, // 64 NOT USED
-  0  // 65 escape
-};
-
-const byte key_modifiers[] = {
-  39, // left shift
-  51, // right shift
-  52, // control
-  53  // alt
+    '!', // 0    1!
+    '@', // 1    2@
+    '#', // 2    3#
+    '$', // 3    4$
+    '%', // 4    5%
+    '^', // 5    6^
+    '&', // 6    7&
+    '*', // 7    8*
+    '(', // 8    9(
+    ')', // 9    0)
+    '_', // 10 -=
+    '+', // 11 =+
+    0, // 12 backspace
+    'Q', // 13 q
+    'W', // 14 w
+    'E', // 15 e
+    'R', // 16 r
+    'T', // 17 t
+    'Y', // 18 y
+    'U', // 19 u
+    'I', // 20 i
+    'O', // 21 o
+    'P', // 22 p
+    '{', // 23 [{
+    '}', // 24 ]}
+    0, // 25 enter
+    'A', // 26 a
+    'S', // 27 s
+    'D', // 28 d
+    'F', // 29 f
+    'G', // 30 g
+    'H', // 31 h
+    'J', // 32 j
+    'K', // 33 k
+    'L', // 34 l
+    ':', // 35 ;:
+    '"', // 36 '"
+    '|', // 37 \|
+    0, // 38 NOT USED
+    0, // 39 left shift
+    'Z', // 40 z
+    'X', // 41 x
+    'C', // 42 c
+    'V', // 43 v
+    'B', // 44 b
+    'N', // 45 n
+    'M', // 46 m
+    '<', // 47 ,<
+    '>', // 48 .>
+    '?', // 49 /?
+    '~', // 50 `~
+    0, // 51 right shift
+    0, // 52 control
+    0, // 53 alt
+    0, // 54 space TODO: tab?
+    0, // 55 left arrow TODO: up?
+    0, // 56 right arrow TODO: down?
+    0, // 57 NOT USED
+    0, // 58 NOT USED
+    0, // 59 NOT USED
+    0, // 60 NOT USED
+    0, // 61 NOT USED
+    0, // 62 NOT USED
+    0, // 63 NOT USED
+    0, // 64 NOT USED
+    0    // 65 escape
 };
 
 #define KEY_DELAY 1000
-#define KEY_REPEAT 250
+#define KEY_REPEAT 150
 
 /*
 void requestEvent() {
@@ -196,52 +189,91 @@ void keyboard_init() {
 
 
 void key_press(uint8_t index, unsigned long time) {
-  keys_down[index] = time;
-  keys_pressed[index] = 1;
+
+    keys_down[index] = time;
+    keys_pressed[index] = 1;
 }
+
 
 void key_up(uint8_t index) {
-  keys_down[index] = 0;
-  keys_repeat[index] = 0;
+
+    keys_down[index] = 0;
+    keys_repeat[index] = 0;
 }
+
+
+byte is_modifier(uint8_t index) {
+
+    if (index == KEY_LEFT_SHIFT) {
+        return 1;
+    }
+
+    if (index == KEY_RIGHT_SHIFT) {
+        return 1;
+    }
+
+    if (index == KEY_CONTROL) {
+        return 1;
+    }
+
+    if (index == KEY_ALT) {
+        return 1;
+    }
+
+    return 0;
+}
+
 
 void check_key(uint8_t index, byte value) {
-// TODO: modifiers probably need special handling as repeat and delay isn't relevant there. And we don't want to clear them the moment we first see them later. ie. they don't get "pressed", they just go "down".
 
-  // TODO: this needs a minimum debounce to deal with contact bounce. ie even when the key was released in between.
-
-  if (value == HIGH) {
     unsigned long time = millis();
 
-    if (keys_down[index]) {
-      // The first time a key repeats, there's a longer delay (KEY_DELAY). After that we use the shorter one (KEY_REPEAT).
-      if (keys_repeat[index]) {
-        if (time - keys_down[index] >= KEY_REPEAT) {
-          key_press(index, time);
+    // modifiers need special handling as repeat and delay isn't relevant there. ie. they don't get "pressed", they just go "down".
+    if (is_modifier(index)) {
+        if (value == HIGH) {
+            keys_down[index] = 1;
         }
-      }
-      else {
-        if (time - keys_down[index] >= KEY_DELAY) {
-          keys_repeat[index] = 1;
-          key_press(index, time);
+        else {
+            keys_down[index] = 0;
         }
-      }
+
+        return;
+    }
+
+    // TODO: this needs a minimum debounce to deal with contact bounce. ie even when the key was released in between.
+
+    if (value == HIGH) {
+        if (keys_down[index]) {
+            // The first time a key repeats, there's a longer delay (KEY_DELAY). After that we use the shorter one (KEY_REPEAT).
+            if (keys_repeat[index]) {
+                if (time - keys_down[index] >= KEY_REPEAT) {
+                    key_press(index, time);
+                }
+            }
+            else {
+                if (time - keys_down[index] >= KEY_DELAY) {
+                    keys_repeat[index] = 1;
+                    key_press(index, time);
+                }
+            }
+        }
+        else {
+            // wasn't down before, is now so it is pressed
+            // TODO: do we want keydown events too?
+            key_press(index, time);
+        }
     }
     else {
-      // wasn't down before, is now so it is pressed
-      // TODO: do we want keydown events too?
-      key_press(index, time);
+        // TODO: we don't technically have to check this until we have keyup events
+        if (keys_down[index]) {
+            key_up(index);
+        }
     }
-  }
-  else {
-    // TODO: we don't technically have to check this until we have keyup events
-    if (keys_down[index]) {
-      key_up(index);
-    }
-  }
 }
 
+
 void keyboard_poll() {
+
     for (int r=0; r<5; r++) {
         // TODO: this can be optimised a lot
 

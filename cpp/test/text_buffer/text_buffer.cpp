@@ -202,7 +202,7 @@ void test_is_escape_end() {
 
 void test_insert_at() {
 
-    char string[TEXTBUFFER_LENGTH];
+    char string[TEXTBUFFER_LENGTH + 1];
 
     insert_at(string, 0, 'w');
     TEST_ASSERT_EQUAL_STRING("w", string);
@@ -277,8 +277,8 @@ void test_tb_get_line_from_current() {
 
     TextBuffer tb;
     tb_init(&tb);
-    char target[TEXTBUFFER_LENGTH];
-    char expected[COLS];
+    char target[TEXTBUFFER_LENGTH + 1];
+    char expected[COLS + 1];
 
     tb_get_line_from_current(&tb, target, 0);
     TEST_ASSERT_EQUAL_STRING("", target);
@@ -302,8 +302,8 @@ void test_tb_get_line_from_past_end() {
 
     TextBuffer tb;
     tb_init(&tb);
-    char target[TEXTBUFFER_LENGTH];
-    char expected[COLS];
+    char target[TEXTBUFFER_LENGTH + 1];
+    char expected[COLS + 1];
 
     setlength(tb.past[0], 5, 'a');
     setlength(tb.past[1], 10, 'b');
@@ -322,7 +322,7 @@ void test_handle_lf() {
     TextBuffer tb;
     tb_init(&tb);
 
-    char line[TEXTBUFFER_LENGTH];
+    char line[TEXTBUFFER_LENGTH + 1];
 
     tb_handle_visible_char(&tb, 'a');
 
@@ -415,7 +415,7 @@ void test_tb_move_cursor_left() {
 void test_errors() {
 
     int i;
-    char line[TEXTBUFFER_LENGTH];
+    char line[TEXTBUFFER_LENGTH + 1];
 
     TextBuffer tb;
     tb_init(&tb);

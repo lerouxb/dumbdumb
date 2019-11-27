@@ -282,9 +282,6 @@ int tb_num_lines_current(TextBuffer * tb) {
 }
 
 int tb_num_lines(TextBuffer * tb) {
-    int i = 0;
-    char c;
-
     // first add the hard-wrapped lines in the current one
     int total = tb_num_lines_current(tb);
 

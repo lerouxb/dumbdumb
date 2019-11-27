@@ -2,28 +2,33 @@
 #include <st7789vi.h>
 #include <keyboard.h>
 #include <pixel_buffer.h>
+#include <text_buffer.h>
 #include <color_utils.h>
 
 //uint16_t tileColor = 0;
 //uint16_t xTile = 0;
 //uint16_t yTile = 0;
-uint16_t nextChar = 0;
+//uint16_t nextChar = 0;
+
+TextBuffer tb;
 
 HardwareSerial Serial1(PC5, PC4);
 
 void setup() {
+    tb_init(&tb);
     tft_init();
     keyboard_init();
 
     Serial1.begin(115200);
-    Serial1.println("begin");
+    //Serial1.println("begin");
 }
 
 
-uint16_t row = 0;
-uint16_t col = 0;
+//uint16_t row = 0;
+//uint16_t col = 0;
 
-void update_screen() {
+/*
+void debug_key_buffer() {
 
     int i;
     int length;
@@ -31,7 +36,7 @@ void update_screen() {
     length = strlen(key_buffer);
 
     if (length) {
-        Serial1.write(key_buffer);
+        //Serial1.write(key_buffer);
 
         for (i=0; i<length; i++) {
             pixel_buffer_draw_char(col*6, 0, (unsigned char) key_buffer[i], 4095, 0);
@@ -53,12 +58,60 @@ void update_screen() {
         tft_copy_pixel_buffer(row);
     }
 }
+*/
 
 void loop() {
 
-    keyboard_poll();
-    keyboard_to_vt100();
-    update_screen();
+    int length;
+    int row;
+    int col;
+    char line[TEXTBUFFER_LENGTH + 1];
+    int line_length;
+    int num_bytes;
+
+    // prioritise reading the serial buffer above all else
+    length = Serial1.available();
+    if (length > 0) {
+        while (length > 0) {
+            num_bytes = Serial1.readBytes(line, length);
+            line[num_bytes] = 0;
+            tb_write(&tb, line);
+            length = Serial1.available();
+        }
+    }
+    else {
+        keyboard_poll();
+        keyboard_to_vt100();
+
+        length = strlen(key_buffer);
+        if (length) {
+            Serial1.write(key_buffer);
+        }
+
+        for (row=0; row<ROWS; row++) {
+            if (!tb.dirty[row]) {
+                continue;
+            }
+            tb.dirty[row] = false;
+
+            pixel_buffer_clear();
+
+            line[0] = 0;
+            tb_get_screen_line(&tb, line, row);
+            line_length = strlen(line);
+
+            for (col=0; col<line_length; col++) {
+                pixel_buffer_draw_char(col*6, 0, (unsigned char) line[col], 4095, 0);
+            }
+
+            // draw the cursor if it is on this row
+            if (row == tb_y(&tb)) {
+                pixel_buffer_draw_cursor(tb_x(&tb)*6, 0, 4095);
+            }
+
+            tft_copy_pixel_buffer(row);
+        }
+    }
 
     /*
     // debug

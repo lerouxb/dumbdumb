@@ -73,7 +73,7 @@ const char key_map_normal[] = {
     'p', // 22 p
     '[', // 23 [{
     ']', // 24 ]}
-    0x0A, // 25 enter (line-feed)
+    0x0D, // 25 enter (line-feed)
     'a', // 26 a
     's', // 27 s
     'd', // 28 d

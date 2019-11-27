@@ -23,20 +23,55 @@ void setup() {
 uint16_t row = 0;
 uint16_t col = 0;
 
-void loop() {
-    keyboard_poll();
+void update_screen() {
 
+    int i;
+    int length;
+
+    length = strlen(key_buffer);
+
+    if (length) {
+        Serial1.write(key_buffer);
+
+        for (i=0; i<length; i++) {
+            pixel_buffer_draw_char(col*6, 0, (unsigned char) key_buffer[i], 4095, 0);
+            col++;
+
+            if (col > 52) {
+                tft_copy_pixel_buffer(row);
+                pixel_buffer_clear();
+                row++;
+                col = 0;
+            }
+            if (row > 29) {
+                row = 0;
+            }
+        }
+
+        // cursor
+        pixel_buffer_draw_cursor(col*6, 0, 4095);
+        tft_copy_pixel_buffer(row);
+    }
+}
+
+void loop() {
+
+    keyboard_poll();
+    keyboard_to_vt100();
+    update_screen();
+
+    /*
     // debug
 
-    byte is_control = keys_down[KEY_CONTROL];
-    byte is_alt = keys_down[KEY_ALT];
+    bool is_control = keys_down[KEY_CONTROL];
+    bool is_alt = keys_down[KEY_ALT];
 
     // TODO: deal with these
     if (is_control || is_alt) {
         return;
     }
 
-    byte is_shift = keys_down[KEY_LEFT_SHIFT] || keys_down[KEY_RIGHT_SHIFT];
+    bool is_shift = keys_down[KEY_LEFT_SHIFT] || keys_down[KEY_RIGHT_SHIFT];
 
     int i;
     unsigned char printable;
@@ -81,6 +116,7 @@ void loop() {
             tft_copy_pixel_buffer(row);
         }
     }
+    */
 
     /*
     for (int r=0; r<5; ++r) {

@@ -2,14 +2,52 @@
 #include "keyboard.h"
 //#include <Wire.h>
 
+#define R0 PC11
+#define R1 PC12
+#define R2 PC13
+#define R3 PC14
+#define R4 PC15
+#define C0 PF1
+#define C1 PC0
+#define C2 PC1
+#define C3 PC2
+#define C4 PC3
+#define C5 PA0
+#define C6 PA1
+#define C7 PA2
+#define C8 PA3
+#define C9 PA4
+#define C10 PA5
+#define C11 PA6
+#define C12 PA7
+#define ESC PF0
+
+//#define KEY_BACKSPACE 12
+//#define KEY_ENTER 25
+#define KEY_LEFT_SHIFT 39
+#define KEY_RIGHT_SHIFT 51
+#define KEY_CONTROL 52
+#define KEY_ALT 53
+//#define KEY_LEFT_ARROW 55
+//#define KEY_RIGHT_ARROW 56
+//#define KEY_ESCAPE 65
+
+
+#define KEY_DEBOUNCE 50
+#define KEY_DELAY 1000
+#define KEY_REPEAT 150
+
 // this is slightly inefficient because not all 5 rows have 13 keys each and we could have fit escape in there
+unsigned long last_down[5 * 13 + 1];
 unsigned long keys_down[5 * 13 + 1];
 
 // this is inefficient because we only need one bit per key
-byte keys_repeat[5 * 13 + 1];
-byte keys_pressed[5 * 13 + 1];
+bool keys_repeat[5 * 13 + 1];
+bool keys_pressed[5 * 13 + 1];
 
-const unsigned char key_map_normal[] = {
+char key_buffer[KEY_BUFFER_SIZE + 1];
+
+const char key_map_normal[] = {
     '1', // 0    1!
     '2', // 1    2@
     '3', // 2    3#
@@ -22,7 +60,7 @@ const unsigned char key_map_normal[] = {
     '0', // 9    0)
     '-', // 10 -=
     '=', // 11 =+
-    0, // 12 backspace TODO
+    0x08, // 12 backspace
     'q', // 13 q
     'w', // 14 w
     'e', // 15 e
@@ -35,7 +73,7 @@ const unsigned char key_map_normal[] = {
     'p', // 22 p
     '[', // 23 [{
     ']', // 24 ]}
-    0, // 25 enter TODO
+    0x0A, // 25 enter (line-feed)
     'a', // 26 a
     's', // 27 s
     'd', // 28 d
@@ -65,8 +103,8 @@ const unsigned char key_map_normal[] = {
     0, // 52 control TODO
     0, // 53 alt TODO
     ' ', // 54 space
-    0, // 55 left arrow TODO
-    0, // 56 right arrow TODO
+    0x02, // 55 left arrow
+    0x06, // 56 right arrow
     0, // 57 NOT USED
     0, // 58 NOT USED
     0, // 59 NOT USED
@@ -78,7 +116,7 @@ const unsigned char key_map_normal[] = {
     0    // 65 escape TODO
 };
 
-const unsigned char key_map_shifted[] = {
+const char key_map_shifted[] = {
     '!', // 0    1!
     '@', // 1    2@
     '#', // 2    3#
@@ -133,9 +171,9 @@ const unsigned char key_map_shifted[] = {
     0, // 51 right shift
     0, // 52 control
     0, // 53 alt
-    0, // 54 space TODO: tab?
-    0, // 55 left arrow TODO: up?
-    0, // 56 right arrow TODO: down?
+    0x09, // 54 shift-space == tab
+    0x10, // 55 shift left arrow == up
+    0x0D, // 56 shift right arrow == down
     0, // 57 NOT USED
     0, // 58 NOT USED
     0, // 59 NOT USED
@@ -147,8 +185,6 @@ const unsigned char key_map_shifted[] = {
     0    // 65 escape
 };
 
-#define KEY_DELAY 1000
-#define KEY_REPEAT 150
 
 /*
 void requestEvent() {
@@ -190,37 +226,39 @@ void keyboard_init() {
 
 void key_press(uint8_t index, unsigned long time) {
 
+    last_down[index] = time;
     keys_down[index] = time;
-    keys_pressed[index] = 1;
+    keys_pressed[index] = true;
 }
 
 
 void key_up(uint8_t index) {
 
     keys_down[index] = 0;
-    keys_repeat[index] = 0;
+    keys_repeat[index] = false;
 }
 
 
-byte is_modifier(uint8_t index) {
+bool is_modifier(uint8_t index) {
 
-    if (index == KEY_LEFT_SHIFT) {
-        return 1;
+    if (index == KEY_LEFT_SHIFT || index == KEY_RIGHT_SHIFT || index == KEY_CONTROL ||  index == KEY_ALT) {
+        return true;
     }
 
-    if (index == KEY_RIGHT_SHIFT) {
-        return 1;
+    return false;
+}
+
+
+bool is_ctrlable(char c) {
+    if (c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e' || c == 'f' || c == 'k' || c == 'n' || c == 'p' || c == 'u') {
+        return true;
     }
 
-    if (index == KEY_CONTROL) {
-        return 1;
-    }
+    return false;
+}
 
-    if (index == KEY_ALT) {
-        return 1;
-    }
-
-    return 0;
+char ctrlify(char c) {
+    return c - 'a' + 1;
 }
 
 
@@ -228,7 +266,7 @@ void check_key(uint8_t index, byte value) {
 
     unsigned long time = millis();
 
-    // modifiers need special handling as repeat and delay isn't relevant there. ie. they don't get "pressed", they just go "down".
+    // Modifiers need special handling as repeat and delay isn't relevant there. ie. they don't get "pressed", they just go "down". There's also no debounce involved.
     if (is_modifier(index)) {
         if (value == HIGH) {
             keys_down[index] = 1;
@@ -240,9 +278,12 @@ void check_key(uint8_t index, byte value) {
         return;
     }
 
-    // TODO: this needs a minimum debounce to deal with contact bounce. ie even when the key was released in between.
-
     if (value == HIGH) {
+        // Minimum debounce to deal with contact bounce.
+        if (last_down[index] && (time - last_down[index] < KEY_DEBOUNCE)) {
+            return;
+        }
+
         if (keys_down[index]) {
             // The first time a key repeats, there's a longer delay (KEY_DELAY). After that we use the shorter one (KEY_REPEAT).
             if (keys_repeat[index]) {
@@ -252,19 +293,17 @@ void check_key(uint8_t index, byte value) {
             }
             else {
                 if (time - keys_down[index] >= KEY_DELAY) {
-                    keys_repeat[index] = 1;
+                    keys_repeat[index] = true;
                     key_press(index, time);
                 }
             }
         }
         else {
             // wasn't down before, is now so it is pressed
-            // TODO: do we want keydown events too?
             key_press(index, time);
         }
     }
     else {
-        // TODO: we don't technically have to check this until we have keyup events
         if (keys_down[index]) {
             key_up(index);
         }
@@ -274,16 +313,36 @@ void check_key(uint8_t index, byte value) {
 
 void keyboard_poll() {
 
-    for (int r=0; r<5; r++) {
+    int r;
+    int pin;
+
+    for (r=0; r<5; r++) {
         // TODO: this can be optimised a lot
 
+        if (r == 0) {
+            pin = R0;
+        } else if (r == 1) {
+            pin = R1;
+        } else if (r == 2) {
+            pin = R2;
+        } else if (r == 3) {
+            pin = R3;
+        } else {
+            pin = R4;
+        }
+
+        /*
         digitalWrite(R0, (r == 0) ? HIGH : LOW);
         digitalWrite(R1, (r == 1) ? HIGH : LOW);
         digitalWrite(R2, (r == 2) ? HIGH : LOW);
         digitalWrite(R3, (r == 3) ? HIGH : LOW);
         digitalWrite(R4, (r == 4) ? HIGH : LOW);
+        */
+        digitalWrite(pin, HIGH);
 
         delay(1); // TODO: without this it seems like voltages don't settle quickly enough. Maybe we can make this shorter with delayMicroseconds?
+
+        // Might be better to have interrupts on all these pins and do the checking in there?
 
         check_key(r*13 + 0, digitalRead(C0));
         check_key(r*13 + 1, digitalRead(C1));
@@ -298,7 +357,69 @@ void keyboard_poll() {
         check_key(r*13 + 10, digitalRead(C10));
         check_key(r*13 + 11, digitalRead(C11));
         check_key(r*13 + 12, digitalRead(C12));
+
+        digitalWrite(pin, LOW);
     }
 
     check_key(5*13, digitalRead(ESC));
+}
+
+bool keyboard_to_vt100() {
+
+    uint8_t i;
+    int buffer_index = 0;
+    key_buffer[0] = 0;
+    char printable;
+
+    bool is_ctrl = keys_down[KEY_CONTROL];
+    bool is_alt = keys_down[KEY_ALT];
+    bool is_shift = keys_down[KEY_LEFT_SHIFT] || keys_down[KEY_RIGHT_SHIFT];
+
+    // ignore alt-* for now
+    if (is_alt) {
+        for (i=0; i<5*13+1; i++) {
+            keys_pressed[i] = false;
+        }
+        return true;
+    }
+
+    for (i=0; i<5*13+1; i++) {
+        if (is_modifier(i)) {
+            // you can't press a modifier anyway
+            continue;
+        }
+
+        if (!keys_pressed[i]) {
+            continue;
+        }
+
+        // Don't allow more but since we exit before clearing it means we should be able to get it next time.
+        if (buffer_index == KEY_BUFFER_SIZE) {
+            return false;
+        }
+
+        keys_pressed[i] = false;
+        printable = is_shift ? key_map_shifted[i] : key_map_normal[i];
+
+        if (!printable) {
+            continue;
+        }
+
+        if (is_ctrl) {
+            if (is_ctrlable(printable)) {
+                // control char that we support
+                key_buffer[buffer_index] = ctrlify(printable);
+                buffer_index += 1;
+                key_buffer[buffer_index] = 0;
+            }
+        }
+        else {
+            // normal printable character
+            key_buffer[buffer_index] = printable;
+            buffer_index += 1;
+            key_buffer[buffer_index] = 0;
+        }
+    }
+
+    return true;
 }

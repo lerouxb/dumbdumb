@@ -1,1 +1,5 @@
 .pio
+*bck
+*bak
+node_modules
+output

@@ -1,0 +1,8 @@
+(module PTC-Fuse-0603 (layer F.Cu) (tedit 5D2BA214)
+  (fp_text reference REF** (at -0.1 -5.1) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value PTC-Fuse-0603 (at 0 3.9) (layer F.Fab)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+)

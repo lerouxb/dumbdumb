@@ -1,0 +1,1508 @@
+EESchema Schematic File Version 4
+LIBS:seventykeys-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text GLabel 850  4700 0    50   Input ~ 0
+ROW0
+$Comp
+L Device:D D1
+U 1 1 5D33766A
+P 1100 4700
+F 0 "D1" H 1100 4576 50  0000 C CNN
+F 1 "D" H 1100 4575 50  0001 C CNN
+F 2 "Diodes_SMD:D_SOD-523" H 1100 4700 50  0001 C CNN
+F 3 "~" H 1100 4700 50  0001 C CNN
+	1    1100 4700
+	-1   0    0    1   
+$EndComp
+Text GLabel 850  5250 0    50   Input ~ 0
+ROW1
+$Comp
+L Switch:SW_Push SW1:0
+U 1 1 5D33936A
+P 1500 5450
+F 0 "SW1:0" V 1500 5598 50  0000 L CNN
+F 1 "SW_Push" V 1545 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1500 5650 50  0001 C CNN
+F 3 "~" H 1500 5650 50  0001 C CNN
+	1    1500 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D2
+U 1 1 5D339370
+P 1100 5250
+F 0 "D2" H 1100 5126 50  0000 C CNN
+F 1 "D" H 1100 5125 50  0001 C CNN
+F 2 "Diodes_SMD:D_SOD-523" H 1100 5250 50  0001 C CNN
+F 3 "~" H 1100 5250 50  0001 C CNN
+	1    1100 5250
+	-1   0    0    1   
+$EndComp
+Text GLabel 850  5800 0    50   Input ~ 0
+ROW2
+$Comp
+L Switch:SW_Push SW2:0
+U 1 1 5D339C56
+P 1500 6000
+F 0 "SW2:0" V 1500 6148 50  0000 L CNN
+F 1 "SW_Push" V 1545 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1500 6200 50  0001 C CNN
+F 3 "~" H 1500 6200 50  0001 C CNN
+	1    1500 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D3
+U 1 1 5D339C5C
+P 1100 5800
+F 0 "D3" H 1100 5676 50  0000 C CNN
+F 1 "D" H 1100 5675 50  0001 C CNN
+F 2 "Diodes_SMD:D_SOD-523" H 1100 5800 50  0001 C CNN
+F 3 "~" H 1100 5800 50  0001 C CNN
+	1    1100 5800
+	-1   0    0    1   
+$EndComp
+Text GLabel 850  6350 0    50   Input ~ 0
+ROW3
+$Comp
+L Switch:SW_Push SW3:0
+U 1 1 5D33A4E0
+P 1500 6550
+F 0 "SW3:0" V 1500 6698 50  0000 L CNN
+F 1 "SW_Push" V 1545 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1500 6750 50  0001 C CNN
+F 3 "~" H 1500 6750 50  0001 C CNN
+	1    1500 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D4
+U 1 1 5D33A4E6
+P 1100 6350
+F 0 "D4" H 1100 6226 50  0000 C CNN
+F 1 "D" H 1100 6225 50  0001 C CNN
+F 2 "Diodes_SMD:D_SOD-523" H 1100 6350 50  0001 C CNN
+F 3 "~" H 1100 6350 50  0001 C CNN
+	1    1100 6350
+	-1   0    0    1   
+$EndComp
+Text GLabel 850  6900 0    50   Input ~ 0
+ROW4
+$Comp
+L Switch:SW_Push SW4:0
+U 1 1 5D33B0DC
+P 1500 7100
+F 0 "SW4:0" V 1500 7248 50  0000 L CNN
+F 1 "SW_Push" V 1545 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1500 7300 50  0001 C CNN
+F 3 "~" H 1500 7300 50  0001 C CNN
+	1    1500 7100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D D5
+U 1 1 5D33B0E2
+P 1100 6900
+F 0 "D5" H 1100 6776 50  0000 C CNN
+F 1 "D" H 1100 6775 50  0001 C CNN
+F 2 "Diodes_SMD:D_SOD-523" H 1100 6900 50  0001 C CNN
+F 3 "~" H 1100 6900 50  0001 C CNN
+	1    1100 6900
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1500 5100 1350 5100
+Wire Wire Line
+	1350 5100 1350 5650
+Wire Wire Line
+	1500 5650 1350 5650
+Connection ~ 1350 5650
+Wire Wire Line
+	1350 5650 1350 6200
+Wire Wire Line
+	1500 6200 1350 6200
+Connection ~ 1350 6200
+Wire Wire Line
+	1350 6200 1350 6750
+Wire Wire Line
+	1500 6750 1350 6750
+Connection ~ 1350 6750
+Wire Wire Line
+	1350 6750 1350 7300
+Wire Wire Line
+	1500 7300 1350 7300
+Connection ~ 1350 7300
+Wire Wire Line
+	1350 7300 1350 7450
+Text GLabel 1350 7450 3    50   Output ~ 0
+COL0
+Wire Wire Line
+	850  4700 950  4700
+Wire Wire Line
+	850  5250 950  5250
+Wire Wire Line
+	850  5800 950  5800
+Wire Wire Line
+	850  6350 950  6350
+Wire Wire Line
+	850  6900 950  6900
+Wire Wire Line
+	1250 4700 1500 4700
+Wire Wire Line
+	1250 5250 1500 5250
+Wire Wire Line
+	1250 5800 1500 5800
+Wire Wire Line
+	1250 6350 1500 6350
+Wire Wire Line
+	1250 6900 1500 6900
+$Comp
+L Switch:SW_Push SW0:0
+U 1 1 5D335FD8
+P 1500 4900
+F 0 "SW0:0" V 1500 5048 50  0000 L CNN
+F 1 "SW_Push" V 1545 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1500 5100 50  0001 C CNN
+F 3 "~" H 1500 5100 50  0001 C CNN
+	1    1500 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:1
+U 1 1 5D3A82AC
+P 1900 5450
+F 0 "SW1:1" V 1900 5598 50  0000 L CNN
+F 1 "SW_Push" V 1945 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1900 5650 50  0001 C CNN
+F 3 "~" H 1900 5650 50  0001 C CNN
+	1    1900 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:1
+U 1 1 5D3A82B2
+P 1900 6000
+F 0 "SW2:1" V 1900 6148 50  0000 L CNN
+F 1 "SW_Push" V 1945 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1900 6200 50  0001 C CNN
+F 3 "~" H 1900 6200 50  0001 C CNN
+	1    1900 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:1
+U 1 1 5D3A82B8
+P 1900 6550
+F 0 "SW3:1" V 1900 6698 50  0000 L CNN
+F 1 "SW_Push" V 1945 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1900 6750 50  0001 C CNN
+F 3 "~" H 1900 6750 50  0001 C CNN
+	1    1900 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:1
+U 1 1 5D3A82BE
+P 1900 7100
+F 0 "SW4:1" V 1900 7248 50  0000 L CNN
+F 1 "SW_Push" V 1945 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1900 7300 50  0001 C CNN
+F 3 "~" H 1900 7300 50  0001 C CNN
+	1    1900 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1900 5100 1750 5100
+Wire Wire Line
+	1750 5100 1750 5650
+Wire Wire Line
+	1900 5650 1750 5650
+Connection ~ 1750 5650
+Wire Wire Line
+	1750 5650 1750 6200
+Wire Wire Line
+	1900 6200 1750 6200
+Connection ~ 1750 6200
+Wire Wire Line
+	1750 6200 1750 6750
+Wire Wire Line
+	1900 6750 1750 6750
+Connection ~ 1750 6750
+Wire Wire Line
+	1750 6750 1750 7300
+Wire Wire Line
+	1900 7300 1750 7300
+Connection ~ 1750 7300
+Wire Wire Line
+	1750 7300 1750 7450
+Text GLabel 1750 7450 3    50   Output ~ 0
+COL1
+$Comp
+L Switch:SW_Push SW0:1
+U 1 1 5D3A82D8
+P 1900 4900
+F 0 "SW0:1" V 1900 5048 50  0000 L CNN
+F 1 "SW_Push" V 1945 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 1900 5100 50  0001 C CNN
+F 3 "~" H 1900 5100 50  0001 C CNN
+	1    1900 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:2
+U 1 1 5D3AAB9A
+P 2300 5450
+F 0 "SW1:2" V 2300 5598 50  0000 L CNN
+F 1 "SW_Push" V 2345 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2300 5650 50  0001 C CNN
+F 3 "~" H 2300 5650 50  0001 C CNN
+	1    2300 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:2
+U 1 1 5D3AABA0
+P 2300 6000
+F 0 "SW2:2" V 2300 6148 50  0000 L CNN
+F 1 "SW_Push" V 2345 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2300 6200 50  0001 C CNN
+F 3 "~" H 2300 6200 50  0001 C CNN
+	1    2300 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:2
+U 1 1 5D3AABA6
+P 2300 6550
+F 0 "SW3:2" V 2300 6698 50  0000 L CNN
+F 1 "SW_Push" V 2345 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2300 6750 50  0001 C CNN
+F 3 "~" H 2300 6750 50  0001 C CNN
+	1    2300 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:2
+U 1 1 5D3AABAC
+P 2300 7100
+F 0 "SW4:2" V 2300 7248 50  0000 L CNN
+F 1 "SW_Push" V 2345 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2300 7300 50  0001 C CNN
+F 3 "~" H 2300 7300 50  0001 C CNN
+	1    2300 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2300 5100 2150 5100
+Wire Wire Line
+	2150 5100 2150 5650
+Wire Wire Line
+	2300 5650 2150 5650
+Connection ~ 2150 5650
+Wire Wire Line
+	2150 5650 2150 6200
+Wire Wire Line
+	2300 6200 2150 6200
+Connection ~ 2150 6200
+Wire Wire Line
+	2150 6200 2150 6750
+Wire Wire Line
+	2300 6750 2150 6750
+Connection ~ 2150 6750
+Wire Wire Line
+	2150 6750 2150 7300
+Wire Wire Line
+	2300 7300 2150 7300
+Connection ~ 2150 7300
+Wire Wire Line
+	2150 7300 2150 7450
+Text GLabel 2150 7450 3    50   Output ~ 0
+COL2
+$Comp
+L Switch:SW_Push SW1:3
+U 1 1 5D3ADAB3
+P 2700 5450
+F 0 "SW1:3" V 2700 5598 50  0000 L CNN
+F 1 "SW_Push" V 2745 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2700 5650 50  0001 C CNN
+F 3 "~" H 2700 5650 50  0001 C CNN
+	1    2700 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:3
+U 1 1 5D3ADAB9
+P 2700 6000
+F 0 "SW2:3" V 2700 6148 50  0000 L CNN
+F 1 "SW_Push" V 2745 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2700 6200 50  0001 C CNN
+F 3 "~" H 2700 6200 50  0001 C CNN
+	1    2700 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:3
+U 1 1 5D3ADABF
+P 2700 6550
+F 0 "SW3:3" V 2700 6698 50  0000 L CNN
+F 1 "SW_Push" V 2745 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2700 6750 50  0001 C CNN
+F 3 "~" H 2700 6750 50  0001 C CNN
+	1    2700 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:3
+U 1 1 5D3ADAC5
+P 2700 7100
+F 0 "SW4:3" V 2700 7248 50  0000 L CNN
+F 1 "SW_Push" V 2745 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2700 7300 50  0001 C CNN
+F 3 "~" H 2700 7300 50  0001 C CNN
+	1    2700 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2700 5100 2550 5100
+Wire Wire Line
+	2550 5100 2550 5650
+Wire Wire Line
+	2700 5650 2550 5650
+Connection ~ 2550 5650
+Wire Wire Line
+	2550 5650 2550 6200
+Wire Wire Line
+	2700 6200 2550 6200
+Connection ~ 2550 6200
+Wire Wire Line
+	2550 6200 2550 6750
+Wire Wire Line
+	2700 6750 2550 6750
+Connection ~ 2550 6750
+Wire Wire Line
+	2550 6750 2550 7300
+Wire Wire Line
+	2700 7300 2550 7300
+Connection ~ 2550 7300
+Wire Wire Line
+	2550 7300 2550 7450
+Text GLabel 2550 7450 3    50   Output ~ 0
+COL3
+$Comp
+L Switch:SW_Push SW0:3
+U 1 1 5D3ADADF
+P 2700 4900
+F 0 "SW0:3" V 2700 5048 50  0000 L CNN
+F 1 "SW_Push" V 2745 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2700 5100 50  0001 C CNN
+F 3 "~" H 2700 5100 50  0001 C CNN
+	1    2700 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:4
+U 1 1 5D3AFCC2
+P 3100 5450
+F 0 "SW1:4" V 3100 5598 50  0000 L CNN
+F 1 "SW_Push" V 3145 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3100 5650 50  0001 C CNN
+F 3 "~" H 3100 5650 50  0001 C CNN
+	1    3100 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:4
+U 1 1 5D3AFCC8
+P 3100 6000
+F 0 "SW2:4" V 3100 6148 50  0000 L CNN
+F 1 "SW_Push" V 3145 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3100 6200 50  0001 C CNN
+F 3 "~" H 3100 6200 50  0001 C CNN
+	1    3100 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:4
+U 1 1 5D3AFCCE
+P 3100 6550
+F 0 "SW3:4" V 3100 6698 50  0000 L CNN
+F 1 "SW_Push" V 3145 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3100 6750 50  0001 C CNN
+F 3 "~" H 3100 6750 50  0001 C CNN
+	1    3100 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:4
+U 1 1 5D3AFCD4
+P 3100 7100
+F 0 "SW4:4" V 3100 7248 50  0000 L CNN
+F 1 "SW_Push" V 3145 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3100 7300 50  0001 C CNN
+F 3 "~" H 3100 7300 50  0001 C CNN
+	1    3100 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3100 5100 2950 5100
+Wire Wire Line
+	2950 5100 2950 5650
+Wire Wire Line
+	3100 5650 2950 5650
+Connection ~ 2950 5650
+Wire Wire Line
+	2950 5650 2950 6200
+Wire Wire Line
+	3100 6200 2950 6200
+Connection ~ 2950 6200
+Wire Wire Line
+	2950 6200 2950 6750
+Wire Wire Line
+	3100 6750 2950 6750
+Connection ~ 2950 6750
+Wire Wire Line
+	2950 6750 2950 7300
+Wire Wire Line
+	3100 7300 2950 7300
+Connection ~ 2950 7300
+Wire Wire Line
+	2950 7300 2950 7450
+Text GLabel 2950 7450 3    50   Output ~ 0
+COL4
+$Comp
+L Switch:SW_Push SW0:4
+U 1 1 5D3AFCEE
+P 3100 4900
+F 0 "SW0:4" V 3100 5048 50  0000 L CNN
+F 1 "SW_Push" V 3145 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3100 5100 50  0001 C CNN
+F 3 "~" H 3100 5100 50  0001 C CNN
+	1    3100 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:5
+U 1 1 5D3B250B
+P 3500 5450
+F 0 "SW1:5" V 3500 5598 50  0000 L CNN
+F 1 "SW_Push" V 3545 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3500 5650 50  0001 C CNN
+F 3 "~" H 3500 5650 50  0001 C CNN
+	1    3500 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:5
+U 1 1 5D3B2511
+P 3500 6000
+F 0 "SW2:5" V 3500 6148 50  0000 L CNN
+F 1 "SW_Push" V 3545 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3500 6200 50  0001 C CNN
+F 3 "~" H 3500 6200 50  0001 C CNN
+	1    3500 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:5
+U 1 1 5D3B2517
+P 3500 6550
+F 0 "SW3:5" V 3500 6698 50  0000 L CNN
+F 1 "SW_Push" V 3545 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3500 6750 50  0001 C CNN
+F 3 "~" H 3500 6750 50  0001 C CNN
+	1    3500 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:5
+U 1 1 5D3B251D
+P 3500 7100
+F 0 "SW4:5" V 3500 7248 50  0000 L CNN
+F 1 "SW_Push" V 3545 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3500 7300 50  0001 C CNN
+F 3 "~" H 3500 7300 50  0001 C CNN
+	1    3500 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3500 5100 3350 5100
+Wire Wire Line
+	3350 5100 3350 5650
+Wire Wire Line
+	3500 5650 3350 5650
+Connection ~ 3350 5650
+Wire Wire Line
+	3350 5650 3350 6200
+Wire Wire Line
+	3500 6200 3350 6200
+Connection ~ 3350 6200
+Wire Wire Line
+	3350 6200 3350 6750
+Wire Wire Line
+	3500 6750 3350 6750
+Connection ~ 3350 6750
+Wire Wire Line
+	3350 6750 3350 7300
+Wire Wire Line
+	3500 7300 3350 7300
+Connection ~ 3350 7300
+Wire Wire Line
+	3350 7300 3350 7450
+Text GLabel 3350 7450 3    50   Output ~ 0
+COL5
+$Comp
+L Switch:SW_Push SW0:5
+U 1 1 5D3B2537
+P 3500 4900
+F 0 "SW0:5" V 3500 5048 50  0000 L CNN
+F 1 "SW_Push" V 3545 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3500 5100 50  0001 C CNN
+F 3 "~" H 3500 5100 50  0001 C CNN
+	1    3500 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:6
+U 1 1 5D3B5E35
+P 3900 5450
+F 0 "SW1:6" V 3900 5598 50  0000 L CNN
+F 1 "SW_Push" V 3945 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3900 5650 50  0001 C CNN
+F 3 "~" H 3900 5650 50  0001 C CNN
+	1    3900 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:6
+U 1 1 5D3B5E3B
+P 3900 6000
+F 0 "SW2:6" V 3900 6148 50  0000 L CNN
+F 1 "SW_Push" V 3945 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3900 6200 50  0001 C CNN
+F 3 "~" H 3900 6200 50  0001 C CNN
+	1    3900 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:6
+U 1 1 5D3B5E41
+P 3900 6550
+F 0 "SW3:6" V 3900 6698 50  0000 L CNN
+F 1 "SW_Push" V 3945 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3900 6750 50  0001 C CNN
+F 3 "~" H 3900 6750 50  0001 C CNN
+	1    3900 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:6
+U 1 1 5D3B5E47
+P 3900 7100
+F 0 "SW4:6" V 3900 7248 50  0000 L CNN
+F 1 "SW_Push" V 3945 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3900 7300 50  0001 C CNN
+F 3 "~" H 3900 7300 50  0001 C CNN
+	1    3900 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3900 5100 3750 5100
+Wire Wire Line
+	3750 5100 3750 5650
+Wire Wire Line
+	3900 5650 3750 5650
+Connection ~ 3750 5650
+Wire Wire Line
+	3750 5650 3750 6200
+Wire Wire Line
+	3900 6200 3750 6200
+Connection ~ 3750 6200
+Wire Wire Line
+	3750 6200 3750 6750
+Wire Wire Line
+	3900 6750 3750 6750
+Connection ~ 3750 6750
+Wire Wire Line
+	3750 6750 3750 7300
+Wire Wire Line
+	3900 7300 3750 7300
+Connection ~ 3750 7300
+Wire Wire Line
+	3750 7300 3750 7450
+Text GLabel 3750 7450 3    50   Output ~ 0
+COL6
+$Comp
+L Switch:SW_Push SW0:6
+U 1 1 5D3B5E61
+P 3900 4900
+F 0 "SW0:6" V 3900 5048 50  0000 L CNN
+F 1 "SW_Push" V 3945 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 3900 5100 50  0001 C CNN
+F 3 "~" H 3900 5100 50  0001 C CNN
+	1    3900 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:7
+U 1 1 5D3B96C4
+P 4300 5450
+F 0 "SW1:7" V 4300 5598 50  0000 L CNN
+F 1 "SW_Push" V 4345 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4300 5650 50  0001 C CNN
+F 3 "~" H 4300 5650 50  0001 C CNN
+	1    4300 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:7
+U 1 1 5D3B96CA
+P 4300 6000
+F 0 "SW2:7" V 4300 6148 50  0000 L CNN
+F 1 "SW_Push" V 4345 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4300 6200 50  0001 C CNN
+F 3 "~" H 4300 6200 50  0001 C CNN
+	1    4300 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:7
+U 1 1 5D3B96D0
+P 4300 6550
+F 0 "SW3:7" V 4300 6698 50  0000 L CNN
+F 1 "SW_Push" V 4345 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4300 6750 50  0001 C CNN
+F 3 "~" H 4300 6750 50  0001 C CNN
+	1    4300 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:7
+U 1 1 5D3B96D6
+P 4300 7100
+F 0 "SW4:7" V 4300 7248 50  0000 L CNN
+F 1 "SW_Push" V 4345 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4300 7300 50  0001 C CNN
+F 3 "~" H 4300 7300 50  0001 C CNN
+	1    4300 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4300 5100 4150 5100
+Wire Wire Line
+	4150 5100 4150 5650
+Wire Wire Line
+	4300 5650 4150 5650
+Connection ~ 4150 5650
+Wire Wire Line
+	4150 5650 4150 6200
+Wire Wire Line
+	4300 6200 4150 6200
+Connection ~ 4150 6200
+Wire Wire Line
+	4150 6200 4150 6750
+Wire Wire Line
+	4300 6750 4150 6750
+Connection ~ 4150 6750
+Wire Wire Line
+	4150 6750 4150 7300
+Wire Wire Line
+	4300 7300 4150 7300
+Connection ~ 4150 7300
+Wire Wire Line
+	4150 7300 4150 7450
+Text GLabel 4150 7450 3    50   Output ~ 0
+COL7
+$Comp
+L Switch:SW_Push SW0:7
+U 1 1 5D3B96F0
+P 4300 4900
+F 0 "SW0:7" V 4300 5048 50  0000 L CNN
+F 1 "SW_Push" V 4345 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4300 5100 50  0001 C CNN
+F 3 "~" H 4300 5100 50  0001 C CNN
+	1    4300 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:8
+U 1 1 5D3BEB2C
+P 4700 5450
+F 0 "SW1:8" V 4700 5598 50  0000 L CNN
+F 1 "SW_Push" V 4745 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4700 5650 50  0001 C CNN
+F 3 "~" H 4700 5650 50  0001 C CNN
+	1    4700 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:8
+U 1 1 5D3BEB32
+P 4700 6000
+F 0 "SW2:8" V 4700 6148 50  0000 L CNN
+F 1 "SW_Push" V 4745 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4700 6200 50  0001 C CNN
+F 3 "~" H 4700 6200 50  0001 C CNN
+	1    4700 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:8
+U 1 1 5D3BEB38
+P 4700 6550
+F 0 "SW3:8" V 4700 6698 50  0000 L CNN
+F 1 "SW_Push" V 4745 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4700 6750 50  0001 C CNN
+F 3 "~" H 4700 6750 50  0001 C CNN
+	1    4700 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:8
+U 1 1 5D3BEB3E
+P 4700 7100
+F 0 "SW4:8" V 4700 7248 50  0000 L CNN
+F 1 "SW_Push" V 4745 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4700 7300 50  0001 C CNN
+F 3 "~" H 4700 7300 50  0001 C CNN
+	1    4700 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4700 5100 4550 5100
+Wire Wire Line
+	4550 5100 4550 5650
+Wire Wire Line
+	4700 5650 4550 5650
+Connection ~ 4550 5650
+Wire Wire Line
+	4550 5650 4550 6200
+Wire Wire Line
+	4700 6200 4550 6200
+Connection ~ 4550 6200
+Wire Wire Line
+	4550 6200 4550 6750
+Wire Wire Line
+	4700 6750 4550 6750
+Connection ~ 4550 6750
+Wire Wire Line
+	4550 6750 4550 7300
+Wire Wire Line
+	4700 7300 4550 7300
+Connection ~ 4550 7300
+Wire Wire Line
+	4550 7300 4550 7450
+Text GLabel 4550 7450 3    50   Output ~ 0
+COL8
+$Comp
+L Switch:SW_Push SW0:8
+U 1 1 5D3BEB58
+P 4700 4900
+F 0 "SW0:8" V 4700 5048 50  0000 L CNN
+F 1 "SW_Push" V 4745 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 4700 5100 50  0001 C CNN
+F 3 "~" H 4700 5100 50  0001 C CNN
+	1    4700 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:9
+U 1 1 5D3C495E
+P 5100 5450
+F 0 "SW1:9" V 5100 5598 50  0000 L CNN
+F 1 "SW_Push" V 5145 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5100 5650 50  0001 C CNN
+F 3 "~" H 5100 5650 50  0001 C CNN
+	1    5100 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:9
+U 1 1 5D3C4964
+P 5100 6000
+F 0 "SW2:9" V 5100 6148 50  0000 L CNN
+F 1 "SW_Push" V 5145 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5100 6200 50  0001 C CNN
+F 3 "~" H 5100 6200 50  0001 C CNN
+	1    5100 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:9
+U 1 1 5D3C496A
+P 5100 6550
+F 0 "SW3:9" V 5100 6698 50  0000 L CNN
+F 1 "SW_Push" V 5145 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5100 6750 50  0001 C CNN
+F 3 "~" H 5100 6750 50  0001 C CNN
+	1    5100 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:9
+U 1 1 5D3C4970
+P 5100 7100
+F 0 "SW4:9" V 5100 7248 50  0000 L CNN
+F 1 "SW_Push" V 5145 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5100 7300 50  0001 C CNN
+F 3 "~" H 5100 7300 50  0001 C CNN
+	1    5100 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5100 5100 4950 5100
+Wire Wire Line
+	4950 5100 4950 5650
+Wire Wire Line
+	5100 5650 4950 5650
+Connection ~ 4950 5650
+Wire Wire Line
+	4950 5650 4950 6200
+Wire Wire Line
+	5100 6200 4950 6200
+Connection ~ 4950 6200
+Wire Wire Line
+	4950 6200 4950 6750
+Wire Wire Line
+	5100 6750 4950 6750
+Connection ~ 4950 6750
+Wire Wire Line
+	4950 6750 4950 7300
+Wire Wire Line
+	5100 7300 4950 7300
+Connection ~ 4950 7300
+Wire Wire Line
+	4950 7300 4950 7450
+Text GLabel 4950 7450 3    50   Output ~ 0
+COL9
+$Comp
+L Switch:SW_Push SW0:9
+U 1 1 5D3C498A
+P 5100 4900
+F 0 "SW0:9" V 5100 5048 50  0000 L CNN
+F 1 "SW_Push" V 5145 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5100 5100 50  0001 C CNN
+F 3 "~" H 5100 5100 50  0001 C CNN
+	1    5100 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:10
+U 1 1 5D3CB364
+P 5500 5450
+F 0 "SW1:10" V 5500 5598 50  0000 L CNN
+F 1 "SW_Push" V 5545 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5500 5650 50  0001 C CNN
+F 3 "~" H 5500 5650 50  0001 C CNN
+	1    5500 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:10
+U 1 1 5D3CB36A
+P 5500 6000
+F 0 "SW2:10" V 5500 6148 50  0000 L CNN
+F 1 "SW_Push" V 5545 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5500 6200 50  0001 C CNN
+F 3 "~" H 5500 6200 50  0001 C CNN
+	1    5500 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:10
+U 1 1 5D3CB370
+P 5500 6550
+F 0 "SW3:10" V 5500 6698 50  0000 L CNN
+F 1 "SW_Push" V 5545 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5500 6750 50  0001 C CNN
+F 3 "~" H 5500 6750 50  0001 C CNN
+	1    5500 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:10
+U 1 1 5D3CB376
+P 5500 7100
+F 0 "SW4:10" V 5500 7248 50  0000 L CNN
+F 1 "SW_Push" V 5545 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5500 7300 50  0001 C CNN
+F 3 "~" H 5500 7300 50  0001 C CNN
+	1    5500 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5500 5100 5350 5100
+Wire Wire Line
+	5350 5100 5350 5650
+Wire Wire Line
+	5500 5650 5350 5650
+Connection ~ 5350 5650
+Wire Wire Line
+	5350 5650 5350 6200
+Wire Wire Line
+	5500 6200 5350 6200
+Connection ~ 5350 6200
+Wire Wire Line
+	5350 6200 5350 6750
+Wire Wire Line
+	5500 6750 5350 6750
+Connection ~ 5350 6750
+Wire Wire Line
+	5350 6750 5350 7300
+Wire Wire Line
+	5500 7300 5350 7300
+Connection ~ 5350 7300
+Wire Wire Line
+	5350 7300 5350 7450
+Text GLabel 5350 7450 3    50   Output ~ 0
+COL10
+$Comp
+L Switch:SW_Push SW0:10
+U 1 1 5D3CB390
+P 5500 4900
+F 0 "SW0:10" V 5500 5048 50  0000 L CNN
+F 1 "SW_Push" V 5545 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5500 5100 50  0001 C CNN
+F 3 "~" H 5500 5100 50  0001 C CNN
+	1    5500 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:11
+U 1 1 5D3D448C
+P 5900 5450
+F 0 "SW1:11" V 5900 5598 50  0000 L CNN
+F 1 "SW_Push" V 5945 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5900 5650 50  0001 C CNN
+F 3 "~" H 5900 5650 50  0001 C CNN
+	1    5900 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:11
+U 1 1 5D3D4492
+P 5900 6000
+F 0 "SW2:11" V 5900 6148 50  0000 L CNN
+F 1 "SW_Push" V 5945 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5900 6200 50  0001 C CNN
+F 3 "~" H 5900 6200 50  0001 C CNN
+	1    5900 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:11
+U 1 1 5D3D4498
+P 5900 6550
+F 0 "SW3:11" V 5900 6698 50  0000 L CNN
+F 1 "SW_Push" V 5945 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5900 6750 50  0001 C CNN
+F 3 "~" H 5900 6750 50  0001 C CNN
+	1    5900 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:11
+U 1 1 5D3D449E
+P 5900 7100
+F 0 "SW4:11" V 5900 7248 50  0000 L CNN
+F 1 "SW_Push" V 5945 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5900 7300 50  0001 C CNN
+F 3 "~" H 5900 7300 50  0001 C CNN
+	1    5900 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5900 5100 5750 5100
+Wire Wire Line
+	5750 5100 5750 5650
+Wire Wire Line
+	5900 5650 5750 5650
+Connection ~ 5750 5650
+Wire Wire Line
+	5750 5650 5750 6200
+Wire Wire Line
+	5900 6200 5750 6200
+Connection ~ 5750 6200
+Wire Wire Line
+	5750 6200 5750 6750
+Wire Wire Line
+	5900 6750 5750 6750
+Connection ~ 5750 6750
+Wire Wire Line
+	5750 6750 5750 7300
+Wire Wire Line
+	5900 7300 5750 7300
+Connection ~ 5750 7300
+Wire Wire Line
+	5750 7300 5750 7450
+Text GLabel 5750 7450 3    50   Output ~ 0
+COL11
+$Comp
+L Switch:SW_Push SW0:11
+U 1 1 5D3D44B8
+P 5900 4900
+F 0 "SW0:11" V 5900 5048 50  0000 L CNN
+F 1 "SW_Push" V 5945 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 5900 5100 50  0001 C CNN
+F 3 "~" H 5900 5100 50  0001 C CNN
+	1    5900 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:12
+U 1 1 5D3DC0DC
+P 6300 5450
+F 0 "SW1:12" V 6300 5598 50  0000 L CNN
+F 1 "SW_Push" V 6345 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6300 5650 50  0001 C CNN
+F 3 "~" H 6300 5650 50  0001 C CNN
+	1    6300 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:12
+U 1 1 5D3DC0E2
+P 6300 6000
+F 0 "SW2:12" V 6300 6148 50  0000 L CNN
+F 1 "SW_Push" V 6345 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6300 6200 50  0001 C CNN
+F 3 "~" H 6300 6200 50  0001 C CNN
+	1    6300 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:12
+U 1 1 5D3DC0E8
+P 6300 6550
+F 0 "SW3:12" V 6300 6698 50  0000 L CNN
+F 1 "SW_Push" V 6345 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6300 6750 50  0001 C CNN
+F 3 "~" H 6300 6750 50  0001 C CNN
+	1    6300 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:12
+U 1 1 5D3DC0EE
+P 6300 7100
+F 0 "SW4:12" V 6300 7248 50  0000 L CNN
+F 1 "SW_Push" V 6345 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6300 7300 50  0001 C CNN
+F 3 "~" H 6300 7300 50  0001 C CNN
+	1    6300 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6300 5100 6150 5100
+Wire Wire Line
+	6150 5100 6150 5650
+Wire Wire Line
+	6300 5650 6150 5650
+Connection ~ 6150 5650
+Wire Wire Line
+	6150 5650 6150 6200
+Wire Wire Line
+	6300 6200 6150 6200
+Connection ~ 6150 6200
+Wire Wire Line
+	6150 6200 6150 6750
+Wire Wire Line
+	6300 6750 6150 6750
+Connection ~ 6150 6750
+Wire Wire Line
+	6150 6750 6150 7300
+Wire Wire Line
+	6300 7300 6150 7300
+Connection ~ 6150 7300
+Wire Wire Line
+	6150 7300 6150 7450
+Text GLabel 6150 7450 3    50   Output ~ 0
+COL12
+$Comp
+L Switch:SW_Push SW0:12
+U 1 1 5D3DC108
+P 6300 4900
+F 0 "SW0:12" V 6300 5048 50  0000 L CNN
+F 1 "SW_Push" V 6345 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6300 5100 50  0001 C CNN
+F 3 "~" H 6300 5100 50  0001 C CNN
+	1    6300 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW1:13
+U 1 1 5D3E62A4
+P 6700 5450
+F 0 "SW1:13" V 6700 5598 50  0000 L CNN
+F 1 "SW_Push" V 6745 5598 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6700 5650 50  0001 C CNN
+F 3 "~" H 6700 5650 50  0001 C CNN
+	1    6700 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW2:13
+U 1 1 5D3E62AA
+P 6700 6000
+F 0 "SW2:13" V 6700 6148 50  0000 L CNN
+F 1 "SW_Push" V 6745 6148 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6700 6200 50  0001 C CNN
+F 3 "~" H 6700 6200 50  0001 C CNN
+	1    6700 6000
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW3:13
+U 1 1 5D3E62B0
+P 6700 6550
+F 0 "SW3:13" V 6700 6698 50  0000 L CNN
+F 1 "SW_Push" V 6745 6698 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6700 6750 50  0001 C CNN
+F 3 "~" H 6700 6750 50  0001 C CNN
+	1    6700 6550
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_Push SW4:13
+U 1 1 5D3E62B6
+P 6700 7100
+F 0 "SW4:13" V 6700 7248 50  0000 L CNN
+F 1 "SW_Push" V 6745 7248 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6700 7300 50  0001 C CNN
+F 3 "~" H 6700 7300 50  0001 C CNN
+	1    6700 7100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6700 5100 6550 5100
+Wire Wire Line
+	6550 5100 6550 5650
+Wire Wire Line
+	6700 5650 6550 5650
+Connection ~ 6550 5650
+Wire Wire Line
+	6550 5650 6550 6200
+Wire Wire Line
+	6700 6200 6550 6200
+Connection ~ 6550 6200
+Wire Wire Line
+	6550 6200 6550 6750
+Wire Wire Line
+	6700 6750 6550 6750
+Connection ~ 6550 6750
+Wire Wire Line
+	6550 6750 6550 7300
+Wire Wire Line
+	6700 7300 6550 7300
+Connection ~ 6550 7300
+Wire Wire Line
+	6550 7300 6550 7450
+Text GLabel 6550 7450 3    50   Output ~ 0
+COL13
+$Comp
+L Switch:SW_Push SW0:13
+U 1 1 5D3E62D0
+P 6700 4900
+F 0 "SW0:13" V 6700 5048 50  0000 L CNN
+F 1 "SW_Push" V 6745 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 6700 5100 50  0001 C CNN
+F 3 "~" H 6700 5100 50  0001 C CNN
+	1    6700 4900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1500 4700 1900 4700
+Connection ~ 1500 4700
+Wire Wire Line
+	1900 4700 2300 4700
+Connection ~ 1900 4700
+Connection ~ 2300 4700
+Wire Wire Line
+	2300 4700 2700 4700
+Connection ~ 2700 4700
+Wire Wire Line
+	2700 4700 3100 4700
+Connection ~ 3100 4700
+Wire Wire Line
+	3100 4700 3500 4700
+Connection ~ 3500 4700
+Wire Wire Line
+	3500 4700 3900 4700
+Wire Wire Line
+	3900 4700 4300 4700
+Connection ~ 3900 4700
+Connection ~ 4300 4700
+Wire Wire Line
+	4300 4700 4700 4700
+Connection ~ 4700 4700
+Wire Wire Line
+	4700 4700 5100 4700
+Connection ~ 5100 4700
+Wire Wire Line
+	5100 4700 5500 4700
+Connection ~ 5500 4700
+Wire Wire Line
+	5500 4700 5900 4700
+Connection ~ 5900 4700
+Wire Wire Line
+	5900 4700 6300 4700
+Connection ~ 6300 4700
+Wire Wire Line
+	6300 4700 6700 4700
+Wire Wire Line
+	1500 5250 1900 5250
+Connection ~ 1500 5250
+Connection ~ 1900 5250
+Wire Wire Line
+	1900 5250 2300 5250
+Connection ~ 2300 5250
+Wire Wire Line
+	2300 5250 2700 5250
+Connection ~ 2700 5250
+Wire Wire Line
+	2700 5250 3100 5250
+Connection ~ 3100 5250
+Wire Wire Line
+	3100 5250 3500 5250
+Connection ~ 3500 5250
+Wire Wire Line
+	3500 5250 3900 5250
+Connection ~ 3900 5250
+Wire Wire Line
+	3900 5250 4300 5250
+Connection ~ 4300 5250
+Wire Wire Line
+	4300 5250 4700 5250
+Connection ~ 4700 5250
+Wire Wire Line
+	4700 5250 5100 5250
+Connection ~ 5100 5250
+Wire Wire Line
+	5100 5250 5500 5250
+Connection ~ 5500 5250
+Wire Wire Line
+	5500 5250 5900 5250
+Connection ~ 5900 5250
+Wire Wire Line
+	5900 5250 6300 5250
+Connection ~ 6300 5250
+Wire Wire Line
+	6300 5250 6700 5250
+Wire Wire Line
+	1500 5800 1900 5800
+Connection ~ 1500 5800
+Connection ~ 1900 5800
+Wire Wire Line
+	1900 5800 2300 5800
+Connection ~ 2300 5800
+Wire Wire Line
+	2300 5800 2700 5800
+Connection ~ 2700 5800
+Wire Wire Line
+	2700 5800 3100 5800
+Connection ~ 3100 5800
+Wire Wire Line
+	3100 5800 3500 5800
+Connection ~ 3500 5800
+Wire Wire Line
+	3500 5800 3900 5800
+Connection ~ 3900 5800
+Wire Wire Line
+	3900 5800 4300 5800
+Connection ~ 4300 5800
+Wire Wire Line
+	4300 5800 4700 5800
+Connection ~ 4700 5800
+Wire Wire Line
+	4700 5800 5100 5800
+Connection ~ 5100 5800
+Wire Wire Line
+	5100 5800 5500 5800
+Connection ~ 5500 5800
+Wire Wire Line
+	5500 5800 5900 5800
+Connection ~ 5900 5800
+Wire Wire Line
+	5900 5800 6300 5800
+Connection ~ 6300 5800
+Wire Wire Line
+	6300 5800 6700 5800
+Wire Wire Line
+	1500 6350 1900 6350
+Connection ~ 1500 6350
+Connection ~ 1900 6350
+Wire Wire Line
+	1900 6350 2300 6350
+Connection ~ 2300 6350
+Wire Wire Line
+	2300 6350 2700 6350
+Connection ~ 2700 6350
+Wire Wire Line
+	2700 6350 3100 6350
+Connection ~ 3100 6350
+Wire Wire Line
+	3100 6350 3500 6350
+Connection ~ 3500 6350
+Wire Wire Line
+	3500 6350 3900 6350
+Connection ~ 3900 6350
+Wire Wire Line
+	3900 6350 4300 6350
+Connection ~ 4300 6350
+Wire Wire Line
+	4300 6350 4700 6350
+Connection ~ 4700 6350
+Wire Wire Line
+	4700 6350 5100 6350
+Connection ~ 5100 6350
+Wire Wire Line
+	5100 6350 5500 6350
+Connection ~ 5500 6350
+Wire Wire Line
+	5500 6350 5900 6350
+Connection ~ 5900 6350
+Wire Wire Line
+	5900 6350 6300 6350
+Connection ~ 6300 6350
+Wire Wire Line
+	6300 6350 6700 6350
+Wire Wire Line
+	1500 6900 1900 6900
+Connection ~ 1500 6900
+Connection ~ 1900 6900
+Wire Wire Line
+	1900 6900 2300 6900
+Connection ~ 2300 6900
+Wire Wire Line
+	2300 6900 2700 6900
+Connection ~ 2700 6900
+Wire Wire Line
+	2700 6900 3100 6900
+Connection ~ 3100 6900
+Wire Wire Line
+	3100 6900 3500 6900
+Connection ~ 3500 6900
+Wire Wire Line
+	3500 6900 3900 6900
+Connection ~ 3900 6900
+Wire Wire Line
+	3900 6900 4300 6900
+Connection ~ 4300 6900
+Wire Wire Line
+	4300 6900 4700 6900
+Connection ~ 4700 6900
+Wire Wire Line
+	4700 6900 5100 6900
+Connection ~ 5100 6900
+Wire Wire Line
+	5100 6900 5500 6900
+Connection ~ 5500 6900
+Wire Wire Line
+	5500 6900 5900 6900
+Connection ~ 5900 6900
+Wire Wire Line
+	5900 6900 6300 6900
+Connection ~ 6300 6900
+Wire Wire Line
+	6300 6900 6700 6900
+$Comp
+L Switch:SW_Push SW0:2
+U 1 1 5D3AABC6
+P 2300 4900
+F 0 "SW0:2" V 2300 5048 50  0000 L CNN
+F 1 "SW_Push" V 2345 5048 50  0001 L CNN
+F 2 "seventykeys:4.5mm-switch" H 2300 5100 50  0001 C CNN
+F 3 "~" H 2300 5100 50  0001 C CNN
+	1    2300 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L esp32-wrover:ESP32-WROVER U2
+U 1 1 5D4CE546
+P 8100 2300
+F 0 "U2" H 8075 3637 60  0000 C CNN
+F 1 "ESP32-WROVER" H 8075 3531 60  0000 C CNN
+F 2 "seventykeys:ESP32-WROVER" H 8550 2000 60  0001 C CNN
+F 3 "" H 8550 2000 60  0001 C CNN
+	1    8100 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_ST_STM32F1:STM32F103R8Tx U1
+U 1 1 5D4DFBB5
+P 3200 2400
+F 0 "U1" H 3200 511 50  0000 C CNN
+F 1 "STM32F103R8Tx" H 3200 420 50  0000 C CNN
+F 2 "Housings_QFP:TQFP-64_10x10mm_Pitch0.5mm" H 2600 700 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00161566.pdf" H 3200 2400 50  0001 C CNN
+	1    3200 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x40 J1
+U 1 1 5D4E99DA
+P 11100 5650
+F 0 "J1" H 11180 5642 50  0000 L CNN
+F 1 "Conn_01x40" H 11180 5551 50  0000 L CNN
+F 2 "seventykeys:Molex-0541324062" H 11100 5650 50  0001 C CNN
+F 3 "~" H 11100 5650 50  0001 C CNN
+	1    11100 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L mcp73123:MCP73123 U3
+U 1 1 5D541450
+P 8950 5650
+F 0 "U3" H 8950 6115 50  0000 C CNN
+F 1 "MCP73123" H 8950 6024 50  0000 C CNN
+F 2 "seventykeys:MCP73123" H 8550 6000 50  0001 C CNN
+F 3 "" H 8550 6000 50  0001 C CNN
+	1    8950 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Analog_Switch:MAX40200AUK U5
+U 1 1 5D543EDF
+P 10250 2750
+F 0 "U5" H 10250 3117 50  0000 C CNN
+F 1 "MAX40200AUK" H 10250 3026 50  0000 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 10250 3250 50  0001 C CNN
+F 3 "https://datasheets.maximintegrated.com/en/ds/MAX40200.pdf" H 10250 3250 50  0001 C CNN
+	1    10250 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:USB_C_Receptacle_USB2.0 J2
+U 1 1 5D3648FA
+P 5650 1500
+F 0 "J2" H 5757 2367 50  0000 C CNN
+F 1 "USB_C_Receptacle_USB2.0" H 5757 2276 50  0000 C CNN
+F 2 "Connectors_USB:USB_C_Receptacle_Amphenol_12401610E4-2A" H 5800 1500 50  0001 C CNN
+F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 5800 1500 50  0001 C CNN
+	1    5650 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Battery_Cell BT1
+U 1 1 5D378B19
+P 9950 1200
+F 0 "BT1" H 10068 1296 50  0000 L CNN
+F 1 "Battery_Cell" H 10068 1205 50  0000 L CNN
+F 2 "" V 9950 1260 50  0001 C CNN
+F 3 "~" V 9950 1260 50  0001 C CNN
+	1    9950 1200
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

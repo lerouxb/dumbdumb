@@ -1,0 +1,20 @@
+{
+  "name": "fiftyseven",
+  "version": "0.0.1",
+  "description": "Tiny 57 key repl",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "lab -t 100 -v -L",
+    "lint": "lab -f -d -L"
+  },
+  "author": "Le Roux Bodenstein",
+  "license": "MIT",
+  "dependencies": {
+    "hoek": "^6.1.2"
+  },
+  "devDependencies": {
+    "code": "^5.2.4",
+    "lab": "^18.0.2",
+    "sinon": "^7.2.7"
+  }
+}

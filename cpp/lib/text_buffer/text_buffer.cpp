@@ -4,14 +4,16 @@
 #include <string.h>
 #include "text_buffer.h"
 
-const char * tb_error;
+const char * tb_error = NULL;
 
 const char UNKNOWN_ESCAPE_END[] = "unknown escape end";
 const char ESCAPE_STRING_TOO_LONG[] = "escape string too long";
 const char UNKNOWN_ESCAPE_SEQUENCE[] = "unknown escape sequence";
 const char TEXT_BUFFER_OVERFLOW[] = "text buffer overflow";
 const char UNKNOWN_CHARACTER[] = "unknown character";
-const char ROW_OVERFLOW[] = "row overflow";
+const char ROW_OVERFLOW_PAST[] = "row overflow (past)";
+const char ROW_OVERFLOW_CURRENT[] = "row overflow (current)";
+const char ROW_OVERFLOW_SCREEN[] = "row overflow (screen)";
 
 bool is_letter(char c) {
     if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
@@ -66,21 +68,17 @@ bool is_escape_end(const char * escape_string) {
 bool insert_at(char * current, int offset, char c) {
     int length = strlen(current);
 
-    if (length == TEXTBUFFER_LENGTH) {
-        tb_error = TEXT_BUFFER_OVERFLOW;
-        return false;
-    }
-
-    if (offset == length) {
-        current[offset] = c;
-        current[offset+1] = 0;
-        return true;
-    }
-
-    memcpy(&current[offset+1], &current[offset], length - offset);
-
+    // append if we're at the end, overwrite otherwise
     current[offset] = c;
-    current[length + 1] = 0;
+
+    // only increase the length (append) if we're at the end
+    if (offset == length) {
+        if (length == TEXTBUFFER_LENGTH) {
+            tb_error = TEXT_BUFFER_OVERFLOW;
+            return false;
+        }
+        current[length+1] = 0;
+    }
 
     return true;
 }
@@ -95,7 +93,9 @@ void tb_init(TextBuffer * tb) {
     tb->escape_string[0] = 0;
 
     for (i=0; i<ROWS; i++) {
-        tb->past[i][0] = 0;
+        if (i < ROWS-1) {
+            tb->past[i][0] = 0;
+        }
         tb->dirty[i] = false;
     }
 }
@@ -192,16 +192,28 @@ void tb_handle_cr(TextBuffer * tb) {
 }
 
 void tb_handle_lf(TextBuffer * tb) {
+    // could be CRLF or LF
+
     int i;
 
     Mark mark;
     mark_init(&mark, tb);
 
-    // could be CRLF or LF
     int num_lines = tb_num_lines(tb);
 
-    for (i=0; i<num_lines; i++) {
-        tb_get_screen_line(tb, tb->past[i], i);
+    if (num_lines < ROWS) {
+        // no scrolling yet
+        for (i=0; i<num_lines; i++) {
+            tb_get_screen_line(tb, tb->past[i], i);
+        }
+    }
+    else {
+        // scrolling
+        mark.scrolled = true;
+        num_lines = ROWS - 1;
+        for (i=0; i<num_lines; i++) {
+            tb_get_screen_line(tb, tb->past[i], i+1);
+        }
     }
 
     tb->length = num_lines;
@@ -313,7 +325,7 @@ bool tb_get_line_from_current(TextBuffer * tb, char * destination, int y) {
     int length = strlen(tb->current);
 
     if (y*COLS > length) {
-        tb_error = ROW_OVERFLOW;
+        tb_error = ROW_OVERFLOW_CURRENT;
         return false;
     }
 
@@ -324,6 +336,8 @@ bool tb_get_line_from_current(TextBuffer * tb, char * destination, int y) {
     } else {
         amount = COLS;
     }
+
+    //printf("%d\n", amount);
 
     memcpy(destination, &tb->current[y*COLS], amount);
     destination[amount] = 0;
@@ -337,7 +351,7 @@ bool tb_get_line_from_past_end(TextBuffer * tb, char * destination, int delta) {
     int length = strlen(tb->past[index]);
 
     if (index < 0 || index >= tb->length) {
-        tb_error = ROW_OVERFLOW;
+        tb_error = ROW_OVERFLOW_PAST;
         return false;
     }
 
@@ -351,7 +365,7 @@ bool tb_get_screen_line(TextBuffer * tb, char * destination, int y) {
     int num_lines = tb_num_lines(tb);
 
     if (y >= num_lines) {
-        tb_error = ROW_OVERFLOW;
+        tb_error = ROW_OVERFLOW_SCREEN;
         return false;
     }
 
@@ -371,6 +385,14 @@ bool tb_get_screen_line(TextBuffer * tb, char * destination, int y) {
     return true;
 }
 
+void tb_set_dirty(TextBuffer * tb) {
+    int i;
+
+    for (i=0; i<ROWS; i++) {
+        tb->dirty[i] = true;
+    }
+}
+
 void tb_reset_dirty(TextBuffer * tb) {
     int i;
 
@@ -382,6 +404,8 @@ void tb_reset_dirty(TextBuffer * tb) {
 void mark_init(Mark * mark, TextBuffer * tb) {
     mark->before_length = tb_num_lines(tb);
     mark->before_y = tb_y(tb);
+    mark->before_lines_current = tb_num_lines_current(tb);
+    mark->scrolled = false;
 }
 
 void mark_apply(Mark * mark, TextBuffer * tb) {
@@ -389,16 +413,22 @@ void mark_apply(Mark * mark, TextBuffer * tb) {
     int after_length = tb_num_lines(tb);
     int after_y;
 
-    if (after_length == mark->before_length) {
+    if (mark->scrolled) {
+        // we definitely scrolled due to LF at the end (see tb_handle_lf)
+        tb_set_dirty(tb);
+
+    } else if (mark->before_length == ROWS && tb_num_lines_current(tb) != mark->before_lines_current) {
+        // we were already at the bottom of the screen and now the line wrapped/unwrapped, so the whole screen scrolls
+        tb_set_dirty(tb);
+
+    } else if (after_length == mark->before_length) {
+        // still on the same line
         after_y = tb_y(tb);
         tb->dirty[mark->before_y] = true;
         tb->dirty[after_y] = true;
+
     } else {
-        // This can be optimised so it doesn't redraw the entire screen every
-        // time a new line appears, but that will only help in cases where it
-        // doesn't scroll yet.
-        for (i=0; i<ROWS; i++) {
-            tb->dirty[i] = true;
-        }
+        // unsure
+        tb_set_dirty(tb);
     }
 }

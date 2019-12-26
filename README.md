@@ -3,6 +3,8 @@ DumbDumb Terminal
 
 A little smart hardware serial terminal for use with REPLs like MicroPython in the form of a Feather Wing.
 
+![dumbdumb](dumbdumb.jpg)
+
 
 Directory structure
 ---

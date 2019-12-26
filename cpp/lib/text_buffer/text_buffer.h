@@ -12,7 +12,7 @@
 extern const char * tb_error;
 
 typedef struct {
-    char past[ROWS][COLS + 1];
+    char past[ROWS-1][COLS + 1];
     char current[ROWS*COLS + 1];
     bool dirty[ROWS];
     int length;
@@ -26,6 +26,8 @@ typedef struct {
     TextBuffer * tb;
     int before_length;
     int before_y;
+    int before_lines_current;
+    bool scrolled;
 } Mark;
 
 // utils
@@ -69,6 +71,7 @@ bool tb_get_line_from_current(TextBuffer * tb, char * destination, int y);
 bool tb_get_line_from_past_end(TextBuffer * tb, char * destination, int delta);
 bool tb_get_screen_line(TextBuffer * tb, char * destination, int y);
 
+void tb_set_dirty(TextBuffer * tb);
 void tb_reset_dirty(TextBuffer * tb);
 
 // Mark

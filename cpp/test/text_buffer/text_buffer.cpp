@@ -147,7 +147,9 @@ void test_tb_init() {
     TEST_ASSERT_EQUAL(0, strlen(tb.escape_string));
 
     for (i=0; i<ROWS; i++) {
-        TEST_ASSERT_EQUAL(0, strlen(tb.past[i]));
+        if (i<ROWS-1) {
+            TEST_ASSERT_EQUAL(0, strlen(tb.past[i]));
+        }
         TEST_ASSERT_EQUAL(0, tb.dirty[i]);
     }
 }
@@ -204,14 +206,17 @@ void test_insert_at() {
 
     char string[TEXTBUFFER_LENGTH + 1];
 
-    insert_at(string, 0, 'w');
-    TEST_ASSERT_EQUAL_STRING("w", string);
+    insert_at(string, 0, 'a');
+    TEST_ASSERT_EQUAL_STRING("a", string);
 
-    insert_at(string, 0, 'h');
-    TEST_ASSERT_EQUAL_STRING("hw", string);
+    insert_at(string, 0, 'b');
+    TEST_ASSERT_EQUAL_STRING("b", string);
 
-    insert_at(string, 1, 'o');
-    TEST_ASSERT_EQUAL_STRING("how", string);
+    insert_at(string, 1, 'c');
+    TEST_ASSERT_EQUAL_STRING("bc", string);
+
+    insert_at(string, 1, '1');
+    TEST_ASSERT_EQUAL_STRING("b1", string);
 
     // TODO: what if the buffer is full?
 }
@@ -275,10 +280,16 @@ void test_tb_y() {
 
 void test_tb_get_line_from_current() {
 
+    int i;
+
     TextBuffer tb;
     tb_init(&tb);
-    char target[TEXTBUFFER_LENGTH + 1];
+    char target[COLS + 1];
     char expected[COLS + 1];
+
+    for (i=0; i<COLS+1; i++) {
+        target[i] = 'x';
+    }
 
     tb_get_line_from_current(&tb, target, 0);
     TEST_ASSERT_EQUAL_STRING("", target);
@@ -296,13 +307,20 @@ void test_tb_get_line_from_current() {
     tb_get_line_from_current(&tb, target, 1);
     setlength(expected, 10);
     TEST_ASSERT_EQUAL_STRING(expected, target);
+
+    // when there is less then one full line:
+    setlength(tb.current, 5);
+    tb_get_line_from_current(&tb, target, 0);
+    setlength(expected, 5);
+    TEST_ASSERT_EQUAL_STRING(expected, target);
+    //printf("target: %s\n", target);
 }
 
 void test_tb_get_line_from_past_end() {
 
     TextBuffer tb;
     tb_init(&tb);
-    char target[TEXTBUFFER_LENGTH + 1];
+    char target[COLS + 1];
     char expected[COLS + 1];
 
     setlength(tb.past[0], 5, 'a');
@@ -314,6 +332,35 @@ void test_tb_get_line_from_past_end() {
 
     tb_get_line_from_past_end(&tb, target, 1);
     TEST_ASSERT_EQUAL_STRING("aaaaa", target);
+}
+
+void test_tb_get_screen_line() {
+
+    int i;
+
+    TextBuffer tb;
+    tb_init(&tb);
+
+    char target[COLS + 1];
+    char expected[COLS + 1];
+
+    // this is actually one more than will be used due to the current line
+    for (i=0; i<ROWS-1; i++) {
+        setlength(tb.past[i], i+1, '!'+i);
+    }
+    tb.length = ROWS;
+
+    setlength(tb.current, ROWS, '!'+ROWS);
+
+    for (i=0; i<ROWS; i++) {
+        tb_get_screen_line(&tb, target, i);
+        //printf("%d: %s\n", i, target);
+    }
+
+    tb.offset = 3;
+    tb_clear_line_from_cursor(&tb);
+    tb_get_screen_line(&tb, target, ROWS-1);
+    //printf("%s\n", target);
 }
 
 void test_handle_lf() {
@@ -355,14 +402,16 @@ void test_handle_lf() {
         TEST_ASSERT_EQUAL(false, tb.dirty[i]);
     }
 
+    // scroll one line
+
     for (i=0; i<ROWS; i++) {
         sprintf(line, "%d\n", i);
         tb_write(&tb, line);
     }
 
-    TEST_ASSERT_EQUAL(ROWS, tb.length);
-    for (i=0; i<ROWS; i++) {
-        sprintf(line, "%d", i);
+    TEST_ASSERT_EQUAL(ROWS-1, tb.length);
+    for (i=0; i<ROWS-1; i++) {
+        sprintf(line, "%d", i+1);
         TEST_ASSERT_EQUAL_STRING(line, tb.past[i]);
     }
 
@@ -466,6 +515,8 @@ void test_errors() {
 
 int main() {
     UNITY_BEGIN();
+
+    /*
     RUN_TEST(test_tb_init);
     RUN_TEST(test_is_letter);
     RUN_TEST(test_is_number);
@@ -475,10 +526,16 @@ int main() {
     RUN_TEST(test_tb_x);
     RUN_TEST(test_tb_y);
     RUN_TEST(test_tb_get_line_from_current);
+    RUN_TEST(test_tb_get_line_from_past_end);
+    RUN_TEST(test_tb_get_screen_line);
+    */
     RUN_TEST(test_handle_lf);
+    /*
     RUN_TEST(test_clear_line_from_cursor);
     RUN_TEST(test_tb_move_cursor_left);
     RUN_TEST(test_errors);
+    */
+
     UNITY_END();
     return 0;
 }

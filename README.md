@@ -5,6 +5,8 @@ A little smart hardware serial terminal for use with REPLs like MicroPython in t
 
 ![dumbdumb](dumbdumb.jpg)
 
+For more info, see the [Hackaday.io project page](https://hackaday.io/project/168722-dumbdumb).
+
 
 Directory structure
 ---
